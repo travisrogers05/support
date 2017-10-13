@@ -167,6 +167,8 @@ function setKieServerEnv() {
             KIE_SERVER_ID="${KIE_SERVER_ID}-${JBOSS_NODE_NAME}"
         fi
     fi
+    JBOSS_HA_ARGS="${JBOSS_HA_ARGS} -Djboss.node.name=${JBOSS_NODE_NAME}"
+    echo "***TROGERS*** JBOSS_HA_ARGS: [${JBOSS_HA_ARGS}]"
     echo "***TROGERS*** KIE_SERVER_ID (after): [${KIE_SERVER_ID}]"
 
     # server state
