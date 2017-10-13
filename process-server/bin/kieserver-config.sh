@@ -155,9 +155,9 @@ function setKieServerEnv() {
             JBOSS_NODE_NAME="${HOSTNAME}"
         fi
         if [ "x${JBOSS_NODE_NAME}" != "x" ]; then
-			if [ ${#JBOSS_NODE_NAME} -gt 23 ]; then
-			  JBOSS_NODE_NAME=${JBOSS_NODE_NAME: -23}
-			fi
+            if [ ${#JBOSS_NODE_NAME} -gt 23 ]; then
+                JBOSS_NODE_NAME=${JBOSS_NODE_NAME: -23}
+            fi
             KIE_SERVER_ID="${KIE_SERVER_ID}-${JBOSS_NODE_NAME}"
         fi
     fi
