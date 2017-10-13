@@ -145,8 +145,12 @@ function dumpKieContainerEnv() {
 
 function setKieServerEnv() {
     # server id
+    echo "***TROGERS*** KIE_SERVER_ID: [${KIE_SERVER_ID}]"
     if [ "${KIE_SERVER_ID}" = "" ]; then
         KIE_SERVER_ID="kieserver"
+        echo "***TROGERS*** EAP_NODE_NAME: [${EAP_NODE_NAME}]"
+        echo "***TROGERS*** container_uuid: [${container_uuid}]"
+        echo "***TROGERS*** HOSTNAME: [${HOSTNAME}]"
         if [ "x${EAP_NODE_NAME}" != "x" ]; then
             JBOSS_NODE_NAME="${EAP_NODE_NAME}"
         elif [ "x${container_uuid}" != "x" ]; then
@@ -154,13 +158,16 @@ function setKieServerEnv() {
         elif [ "x${HOSTNAME}" != "x" ]; then
             JBOSS_NODE_NAME="${HOSTNAME}"
         fi
+        echo "***TROGERS*** JBOSS_NODE_NAME: [${JBOSS_NODE_NAME}] which is ${#JBOSS_NODE_NAME} characters in length"
         if [ "x${JBOSS_NODE_NAME}" != "x" ]; then
             if [ ${#JBOSS_NODE_NAME} -gt 23 ]; then
                 JBOSS_NODE_NAME=${JBOSS_NODE_NAME: -23}
+                echo "***TROGERS*** JBOSS_NODE_NAME (after trunc): [${JBOSS_NODE_NAME}]"
             fi
             KIE_SERVER_ID="${KIE_SERVER_ID}-${JBOSS_NODE_NAME}"
         fi
     fi
+    echo "***TROGERS*** KIE_SERVER_ID (after): [${KIE_SERVER_ID}]"
 
     # server state
     if [ "${JBOSS_HOME}" = "" ]; then
